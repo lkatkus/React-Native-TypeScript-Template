@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View } from 'react-native';
+import { Platform, StyleSheet, Text, View, Alert } from 'react-native';
+import RNLanguages from 'react-native-languages';
+
+import i18n from './app/i18n/i18n';
 
 const instructions = Platform.select({
     ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -13,8 +16,10 @@ export default class App extends Component<Props> {
     render() {
         return (
             <View style={styles.container}>
-                <Text style={styles.welcome}>Welcome to React Native!</Text>
+                <Text style={styles.welcome}>Welcome to React Natives!</Text>
                 <Text style={styles.instructions}>To get started, edit App.tsx</Text>
+                <Text style={styles.instructions}>{RNLanguages.language}</Text>
+                <Text style={styles.instructions}>{i18n('title')}</Text>
                 <Text style={styles.instructions}>{instructions}</Text>
             </View>
         );
