@@ -1,0 +1,52 @@
+{
+    "defaultSeverity": "warning",
+    "extends": [
+        "tslint:latest",
+        "tslint-react",
+        "tslint-eslint-rules",
+        "tslint-import-group-ordering"
+    ],
+    "linterOptions": {
+        "exclude": [
+            "src/i18n/@generated/**/*"
+        ]
+    },
+    "jsRules": {},
+    "rules": {
+        "eofline": true,
+        "object-curly-spacing": [true, "always"],
+        "quotemark": [true, "single", "jsx-double"],
+        "ter-indent": [true, 4, { "SwitchCase": 1 }],
+        "ter-newline-after-var": [true, "always"],
+        "no-implicit-dependencies": false,
+        "interface-name": [true, "never-prefix"],
+        "ordered-imports": false,
+        "object-literal-sort-keys": false,
+        "jsx-no-multiline-js": false,
+        "arrow-parens": false,
+        "array-type": [true, "array"],
+        "no-empty-interface": false,
+        "no-string-literal": false,
+        "no-submodule-imports": [true, "app", "i18n"],
+        "typedef": [true, "call-signature", "parameter", "property-declaration", "member-variable-declaration"],
+        "jsx-no-lambda": false,
+        "import-group-ordering": {
+            "options": {
+                "groups-order": [
+                    "^i18n$",
+                    "^app(/.*$)?",
+                    "^[.]/.*$"
+                ]
+            }
+        },
+        "semicolon": [true, "always", "ignore-bound-class-methods"],
+        "no-multi-spaces": true,
+        "object-literal-key-quotes": [true, "as-needed"],
+        "no-unused-variable": true,
+        "max-line-length": [true, {
+            "limit": 120,
+            "ignore-pattern": " from '[\\w-/\\.]*?';$"
+        }]
+    },
+    "rulesDirectory": []
+}
