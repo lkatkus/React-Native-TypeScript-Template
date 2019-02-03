@@ -1,7 +1,9 @@
 import { Navigation } from "react-native-navigation";
+import { Provider } from 'react-redux';
 import { Platform } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
+import configureStore from './app/store/configureStore';
 import {
     SCREEN_NAMES,
     AuthScreen,
@@ -9,8 +11,10 @@ import {
     SideBarScreen,
 } from './app/screens';
 
-Navigation.registerComponent(SCREEN_NAMES.authScreen, () => AuthScreen);
-Navigation.registerComponent(SCREEN_NAMES.mainScreen, () => MainScreen);
+const store = configureStore();
+
+Navigation.registerComponentWithRedux(SCREEN_NAMES.authScreen, () => AuthScreen, Provider, store);
+Navigation.registerComponentWithRedux(SCREEN_NAMES.mainScreen, () => MainScreen, Provider, store);
 Navigation.registerComponent(SCREEN_NAMES.sideBarScreen, () => SideBarScreen);
 
 Navigation.events().registerAppLaunchedListener(() => {
