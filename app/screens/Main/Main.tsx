@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Navigation } from 'react-native-navigation';
 import { StyleSheet, Text, View } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
-
 
 interface Props {
 
