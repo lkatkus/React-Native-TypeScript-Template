@@ -1,4 +1,6 @@
 import { Navigation } from "react-native-navigation";
+import { Platform } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 import {
     SCREEN_NAMES,
@@ -30,48 +32,52 @@ export const goToLoginScreen = () => {
 }
 
 export const goToMainScreen = () => {
-    Navigation.setRoot({
-        root: {
-            sideMenu: {
-                left: {
-                    component: {                            
-                        name: SCREEN_NAMES.sideBarScreen,
+    Promise.all([
+        Icon.getImageSource(Platform.OS === 'android' ? 'md-menu' : 'ios-menu', 30),
+    ]).then((icons) => {
+        Navigation.setRoot({
+            root: {
+                sideMenu: {
+                    left: {
+                        component: {                            
+                            name: SCREEN_NAMES.sideBarScreen,
+                        },
+                        width: 200,
+                        visible: false,
                     },
-                    width: 200,
-                    visible: false,
-                },
-                center: {
-                    stack: {
-                        children: [{
-                            component: {
-                                id: SCREEN_NAMES.mainScreen,
-                                name: SCREEN_NAMES.mainScreen,
-                                options: {
-                                    topBar: {
-                                        leftButtons: [
-                                            {
-                                                id: 'sideBarToggleButton',
-                                                icon: require('./icon.png'),
-                                            }
-                                        ],
-                                        rightButtons: [
-                                            {
-                                                id: 'quickActionButton',
-                                                text: 'Overview',
-                                            },
-                                        ],
-                                    },
-                                }
-                            },
-                        }]
+                    center: {
+                        stack: {
+                            children: [{
+                                component: {
+                                    id: SCREEN_NAMES.mainScreen,
+                                    name: SCREEN_NAMES.mainScreen,
+                                    options: {
+                                        topBar: {
+                                            leftButtons: [
+                                                {
+                                                    id: 'sideBarToggleButton',
+                                                    icon: icons[0],
+                                                }
+                                            ],
+                                            rightButtons: [
+                                                {
+                                                    id: 'quickActionButton',
+                                                    text: 'Overview',
+                                                },
+                                            ],
+                                        },
+                                    }
+                                },
+                            }]
+                        },
                     },
-                },
-                right: {
-                    component: {                            
-                        name: SCREEN_NAMES.sideBarScreen,
+                    right: {
+                        component: {                            
+                            name: SCREEN_NAMES.sideBarScreen,
+                        },
                     },
                 },
             },
-        },
-    });
+        });
+    })
 }

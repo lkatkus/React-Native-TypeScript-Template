@@ -3,6 +3,7 @@ package com.reactnativetypescripttemplate;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.oblador.vectoricons.VectorIconsPackage;
 import com.reactcommunity.rnlanguages.RNLanguagesPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -38,6 +39,7 @@ public class MainApplication extends NavigationApplication {
         // No need to add RnnPackage and MainReactPackage
         return Arrays.<ReactPackage>asList(
             // new MainReactPackage(),
+            new VectorIconsPackage(),
             new RNLanguagesPackage()
             // eg. new VectorIconsPackage()
         );
