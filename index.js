@@ -34,7 +34,8 @@ export const goToLoginScreen = () => {
 export const goToMainScreen = () => {
     Promise.all([
         Icon.getImageSource(Platform.OS === 'android' ? 'md-menu' : 'ios-menu', 30),
-    ]).then((icons) => {
+        Icon.getImageSource(Platform.OS === 'android' ? 'md-add-circle' : 'ios-add-circle', 30),
+    ]).then(([menuIcon, addItemIcon]) => {
         Navigation.setRoot({
             root: {
                 sideMenu: {
@@ -42,8 +43,6 @@ export const goToMainScreen = () => {
                         component: {                            
                             name: SCREEN_NAMES.sideBarScreen,
                         },
-                        width: 200,
-                        visible: false,
                     },
                     center: {
                         stack: {
@@ -56,13 +55,13 @@ export const goToMainScreen = () => {
                                             leftButtons: [
                                                 {
                                                     id: 'sideBarToggleButton',
-                                                    icon: icons[0],
+                                                    icon: menuIcon,
                                                 }
                                             ],
                                             rightButtons: [
                                                 {
                                                     id: 'quickActionButton',
-                                                    text: 'Overview',
+                                                    icon: addItemIcon,
                                                 },
                                             ],
                                         },
