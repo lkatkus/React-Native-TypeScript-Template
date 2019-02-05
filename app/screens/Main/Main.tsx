@@ -2,20 +2,34 @@ import React, { Component } from 'react';
 import { Navigation } from 'react-native-navigation';
 import { StyleSheet, Text, View } from 'react-native';
 
-interface Props {
+import { BUTTON_NAMES } from './../index';
+
+import i18n from './../../i18n/i18n';
+
+interface WithNavigation {
+    componentId: string;
+}
+
+interface Props extends WithNavigation {
 
 }
 
 export default class MainScreen extends Component<Props> {
-    constructor(props) {
+    constructor(props: Props) {
         super(props);
 
         Navigation.events().bindComponent(this);
     }
 
-    navigationButtonPressed({ buttonId }) {
-        if (buttonId === 'sideBarToggleButton') {
-            Navigation.mergeOptions(this.props.componentId, {
+    navigationButtonPressed(
+        { buttonId } : { buttonId: string }
+    ) {
+        const {
+            componentId,
+        } = this.props;
+
+        if (buttonId === BUTTON_NAMES.sideBarToggleButton) {
+            Navigation.mergeOptions(componentId, {
                 sideMenu: {
                     left: {
                         visible: true
@@ -24,7 +38,8 @@ export default class MainScreen extends Component<Props> {
             });
         }
 
-        if (buttonId === 'quickActionButton') {
+        if (buttonId === BUTTON_NAMES.quickActionButton) {
+            // @ts-ignore
             alert('quickActionButton');
         }
     }
@@ -32,7 +47,7 @@ export default class MainScreen extends Component<Props> {
     render() {
         return (
             <View style={styles.container}>
-                <Text>MainScreen</Text>
+                <Text>{ i18n('title') }</Text>
             </View>
         );
     }

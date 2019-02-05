@@ -1,4 +1,6 @@
 {
-    "title": "react-native-languages demo",
-    "current": "The current language is \"{{language}}\""
+    "title": "MyApp",
+    "profile": "Profile",
+    "settings": "Settings",
+    "logout": "Log Out"
 }
